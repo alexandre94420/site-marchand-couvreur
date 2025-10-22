@@ -1,4 +1,15 @@
 <?php session_start(); ?>
+
+<?php
+session_start();
+
+// Générer un token CSRF si pas déjà défini
+if (empty($_SESSION['token'])) {
+    $_SESSION['token'] = bin2hex(random_bytes(32));
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
