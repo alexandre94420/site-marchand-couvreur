@@ -136,9 +136,15 @@ if (empty($_SESSION['token'])) {
     <h2>Contactez-moi</h2>
     <p>Adresse : 9 Rue de Condé, 33000 Bordeaux</p>
     <p>Téléphone : 06 40 88 79 68</p>
-    <p>Email : <a href="mailto:contact@couvreur-bordeaux.com">contact@couvreur-bordeaux.com</a></p>
+    <p>Email : <a href="mailto:alexandrefourquin@hotmail.fr">alexandrefourquin@hotmail.fr</a></p>
 
     <div id="form-devis" class="form-devis">
+       <?php if (isset($_GET['message']) && $_GET['message'] === 'ok'): ?>
+       <div class="message-confirmation">
+          ✅ Votre message a bien été envoyé. Merci pour votre confiance.
+       </div>
+    <?php endif; ?>
+
       <form action="traitement-formulaire.php" method="POST">
 
       <!-- 🔒 Sécurité du formulaire -->
@@ -229,6 +235,16 @@ if (empty($_SESSION['token'])) {
         burger.classList.remove('active');
       });
     });
-  </script>
+
+   
+
+  // Si le message de confirmation est affiché, on le fait disparaître après 5 secondes
+  const messageConfirmation = document.querySelector('.message-confirmation');
+  if (messageConfirmation) {
+    setTimeout(() => {
+      messageConfirmation.style.display = 'none';
+    }, 5000);
+  }
+</script>
 </body>
 </html>

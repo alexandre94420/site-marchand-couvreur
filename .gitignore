@@ -1,0 +1,11 @@
+# Ignorer les fichiers de config sensibles
+config.php
+.env
+
+# Ignorer les dossiers temporaires ou logs
+logs/
+tmp/
+cache/
+
+# Ignorer le dossier vendor (si tu utilises Composer)
+vendor/

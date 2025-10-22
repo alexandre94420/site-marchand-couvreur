@@ -1,56 +1,65 @@
 <?php
-// traitement-formulaire.php
 session_start();
 
-// Génération du token CSRF si pas déjà fait
-if (empty($_SESSION['token'])) {
-    $_SESSION['token'] = bin2hex(random_bytes(32));
-}
+// Vérifier que le formulaire est soumis en POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-// Vérification que la requête est bien POST
-if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    http_response_code(405); // Méthode non autorisée
-    exit("Méthode non autorisée.");
-}
+    // Vérification du token CSRF
+    if (!isset($_POST['token']) || !hash_equals($_SESSION['token'], $_POST['token'])) {
+        // Token invalide, possible attaque CSRF
+        header('Location: index.php?message=erreur_token');
+        exit;
+    }
 
-// Honeypot : champ caché pour détecter les bots
-if (!empty($_POST['website'])) {
-    http_response_code(400);
-    exit("Erreur détectée (bot).");
-}
+    // Vérification anti-bot (champ caché "website" doit rester vide)
+    if (!empty($_POST['website'])) {
+        // Champ piège rempli => probable robot
+        header('Location: index.php?message=erreur_bot');
+        exit;
+    }
 
-// Vérification du token CSRF
-if (empty($_POST['token']) || $_POST['token'] !== ($_SESSION['token'] ?? '')) {
-    http_response_code(403); // Forbidden
-    exit("Requête non autorisée (CSRF).");
-}
+    // Récupération sécurisée des données
+    $nom = isset($_POST['nom']) ? trim(htmlspecialchars($_POST['nom'])) : '';
+    $email = isset($_POST['email']) ? trim(htmlspecialchars($_POST['email'])) : '';
+    $message = isset($_POST['message']) ? trim(htmlspecialchars($_POST['message'])) : '';
 
-// Récupération et nettoyage des données
-$nom = htmlspecialchars(trim($_POST['nom'] ?? ''), ENT_QUOTES, 'UTF-8');
-$email = htmlspecialchars(trim($_POST['email'] ?? ''), ENT_QUOTES, 'UTF-8');
-$message = htmlspecialchars(trim($_POST['message'] ?? ''), ENT_QUOTES, 'UTF-8');
+    // Validation basique des champs obligatoires
+    if (empty($nom) || empty($email) || empty($message)) {
+        header('Location: index.php?message=erreur_champs');
+        exit;
+    }
 
-// Validation simple des champs
-if (empty($nom) || empty($email) || empty($message)) {
-    http_response_code(400);
-    exit("Veuillez remplir tous les champs.");
-}
+    // Validation simple de l'email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header('Location: index.php?message=erreur_email');
+        exit;
+    }
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    http_response_code(400);
-    exit("Adresse email invalide.");
-}
+    // Préparation du mail
+    $to = "alexandrefourquin@hotmail.fr"; 
+    $subject = "Nouveau message de $nom via le formulaire de contact";
+    $body = "Nom : $nom\n";
+    $body .= "Email : $email\n\n";
+    $body .= "Message :\n$message\n";
 
-// Envoi du mail
-$to = "contact@couvreur-bordeaux.com";
-$subject = "Nouveau devis de $nom";
-$body = "Nom: $nom\nEmail: $email\nMessage:\n$message";
-$headers = "From: $email\r\nReply-To: $email\r\n";
+    // En-têtes pour éviter d'être filtré comme spam
+    $headers = "From: no-reply@votredomaine.com\r\n";
+    $headers .= "Reply-To: $email\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-if (mail($to, $subject, $body, $headers)) {
-    echo "Merci pour votre demande, nous reviendrons vers vous rapidement.";
+    // Envoi du mail
+    if (mail($to, $subject, $body, $headers)) {
+        header('Location: index.php?message=ok');
+        exit;
+    } else {
+        // Erreur d'envoi
+        http_response_code(500);
+        echo "Erreur lors de l'envoi du message. Veuillez réessayer plus tard.";
+        exit;
+    }
 } else {
-    http_response_code(500);
-    exit("Erreur lors de l'envoi du message.");
+    // Accès direct interdit
+    header('Location: index.php');
+    exit;
 }
 ?>
