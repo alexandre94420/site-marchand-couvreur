@@ -9,47 +9,37 @@ if (empty($_SESSION['token'])) {
 
 // Vérification que la requête est bien POST
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    http_response_code(405);
-    echo "Méthode non autorisée.";
-    exit;
+    http_response_code(405); // Méthode non autorisée
+    exit("Méthode non autorisée.");
 }
 
-// Honeypot : si rempli, blocage (bot détecté)
+// Honeypot : champ caché pour détecter les bots
 if (!empty($_POST['website'])) {
     http_response_code(400);
-    echo "Erreur détectée.";
-    exit;
+    exit("Erreur détectée (bot).");
 }
 
 // Vérification du token CSRF
 if (empty($_POST['token']) || $_POST['token'] !== ($_SESSION['token'] ?? '')) {
-    http_response_code(400);
-    echo "Erreur CSRF détectée.";
-    exit;
+    http_response_code(403); // Forbidden
+    exit("Requête non autorisée (CSRF).");
 }
 
-// Nettoyage et validation des données
-$nom = trim($_POST['nom'] ?? '');
-$email = trim($_POST['email'] ?? '');
-$message = trim($_POST['message'] ?? '');
+// Récupération et nettoyage des données
+$nom = htmlspecialchars(trim($_POST['nom'] ?? ''), ENT_QUOTES, 'UTF-8');
+$email = htmlspecialchars(trim($_POST['email'] ?? ''), ENT_QUOTES, 'UTF-8');
+$message = htmlspecialchars(trim($_POST['message'] ?? ''), ENT_QUOTES, 'UTF-8');
 
-// Validation simple
+// Validation simple des champs
 if (empty($nom) || empty($email) || empty($message)) {
     http_response_code(400);
-    echo "Veuillez remplir tous les champs.";
-    exit;
+    exit("Veuillez remplir tous les champs.");
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     http_response_code(400);
-    echo "Adresse email invalide.";
-    exit;
+    exit("Adresse email invalide.");
 }
-
-// Échapper les données pour éviter XSS si réaffichage
-$nom = htmlspecialchars($nom, ENT_QUOTES, 'UTF-8');
-$email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
-$message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
 
 // Envoi du mail
 $to = "contact@couvreur-bordeaux.com";
@@ -61,6 +51,6 @@ if (mail($to, $subject, $body, $headers)) {
     echo "Merci pour votre demande, nous reviendrons vers vous rapidement.";
 } else {
     http_response_code(500);
-    echo "Erreur lors de l'envoi du message.";
+    exit("Erreur lors de l'envoi du message.");
 }
 ?>
