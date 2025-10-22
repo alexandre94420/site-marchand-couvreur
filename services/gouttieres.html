@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../css/style-services.css" />
 </head>
 <body>
+  <button onclick="history.back()" class="btn">Retour</button>
 
   <h1>Service Gouttières</h1>
 
@@ -25,7 +26,33 @@
     <li><strong>Conseils personnalisés :</strong> Diagnostic précis pour optimiser la performance et la longévité de votre système d’évacuation.</li>
   </ul>
 
-  <a href="../contact.html" class="btn">Demander un devis</a>
+  <a href="../index.php#contact" class="btn" onclick="localStorage.setItem('ouvrirDevis', 'true')">Demander un devis gratuit</a>
+ 
+<script>
+  // Script existant...
 
+  // 🔥 NOUVELLE SOLUTION : Utiliser localStorage pour ouvrir le formulaire
+  document.addEventListener('DOMContentLoaded', function() {
+    // Vérifier si on doit ouvrir le formulaire
+    if (localStorage.getItem('ouvrirDevis') === 'true') {
+      // Ouvrir le formulaire
+      const formDevis = document.getElementById('form-devis');
+      if (formDevis) {
+        formDevis.style.display = 'block';
+        // Mettre à jour le texte du bouton
+        const btnDevis = document.getElementById('btn-devis');
+        if (btnDevis) {
+          btnDevis.textContent = 'Fermer le formulaire';
+        }
+        // Scroll vers le formulaire
+        setTimeout(() => {
+          formDevis.scrollIntoView({behavior: 'smooth'});
+        }, 100);
+      }
+      // Effacer le flag
+      localStorage.removeItem('ouvrirDevis');
+    }
+  });
+</script>
 </body>
 </html>

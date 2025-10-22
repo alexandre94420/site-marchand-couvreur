@@ -5,12 +5,39 @@
   box-sizing: border-box;
 }
 
+/* Styles généraux pour le bouton Retour (desktop) */
+
+/* ========== Bouton Retour Fixe ========== */
+.btn-retour {
+  display: inline-block;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 30px;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+  position: fixed; /* ← AJOUT */
+  bottom: 20px;    /* ← AJOUT */
+  left: 20px;      /* ← AJOUT */
+  z-index: 9999;   /* ← AJOUT */
+}
+
+.btn-retour:hover {
+  background-color: #005fa3;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   background: #f2f4f8; /* pastel clair */
   color: #3a3a4a; /* gris foncé mais doux */
   line-height: 1.5;
 }
+
+
 
 a {
   text-decoration: none;
@@ -373,6 +400,11 @@ h2 {
    ========================================================= */
 @media (max-width: 767px) {
 
+   .btn-retour {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
   /* --- Header --- */
   .header {
     height: 70px;
@@ -527,3 +559,14 @@ h2 {
     font-size: 0.9rem;
   }
 }
+
+/* ✅ FIN de @media (max-width: 767px) ici */
+
+@media screen and (max-width: 480px) {
+
+  .btn-retour {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+

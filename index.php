@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <?php
 session_start();
 
@@ -8,7 +6,6 @@ if (empty($_SESSION['token'])) {
     $_SESSION['token'] = bin2hex(random_bytes(32));
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -19,8 +16,6 @@ if (empty($_SESSION['token'])) {
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-
 </head>
 <body>
 
@@ -45,65 +40,66 @@ if (empty($_SESSION['token'])) {
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-
   </header>
 
   <!-- Hero -->
   <section class="hero">
     <h1>Couvreur professionnel à Bordeaux</h1>
     <p><strong>Expertise & Fiabilité</strong></p>
-    <p><strong>Auto-entrepreneur avec plus de 11 ans d’expérience</strong></p>
+    <p><strong>Auto-entrepreneur avec plus de 11 ans d'expérience</strong></p>
     <p>Je vous accompagne dans tous vos projets :</p>
-<ul class="hero-list">
-  <li>Toitures</li>
-  <li>Zinguerie</li>
-  <li>Fenêtres de toit</li>
-  <li>Gouttières PVC & Zinc</li>
-</ul>
-
-
+    <ul class="hero-list">
+      <li>Toitures</li>
+      <li>Zinguerie</li>
+      <li>Fenêtres de toit</li>
+      <li>Gouttières PVC & Zinc</li>
+    </ul>
     <button id="btn-devis" class="btn">Demander un devis gratuit</button>
   </section>
 
-<!-- À propos -->
+  <!-- À propos -->
 <section id="apropos" class="apropos">
   <h2>À propos</h2>
   <p>
-    Fort de plus de <strong>11 ans d’expérience</strong> dans la couverture, je suis titulaire du diplôme <strong>CAP Couvreur</strong>, obtenu auprès des Compagnons du Devoir, avec une spécialisation en zinguerie.
+    Fort de plus de <strong>11 ans d'expérience</strong> dans la couverture, je suis titulaire du diplôme <strong>CAP Couvreur</strong>, obtenu auprès des Compagnons du Devoir, avec une spécialisation en zinguerie.
   </p>
+  <br> <!-- Saut de ligne ajouté -->
   <p>
-    <strong>Basé en Gironde</strong>, et plus précisément autour de <strong>Bordeaux</strong>, j’interviens dans la métropole bordelaise et ses environs.
+    <strong>Basé en Gironde</strong>, et plus précisément autour de <strong>Bordeaux</strong>, j'interviens dans la métropole bordelaise et ses environs.
   </p>
-  <p><strong>En choisissant mon savoir-faire, vous gagnez :</strong></p>
+  <br> <!-- Saut de ligne ajouté -->
+  <p><strong>En choisissant mon savoir-faire, vous gagnez :</strong></p>
+  <br> <!-- Saut de ligne ajouté -->
   <ul>
-    <li><strong>Une expertise reconnue</strong> et un travail effectué dans les règles de l’art, pour une toiture durable et fiable.</li>
+    <li><strong>Une expertise reconnue</strong> et un travail effectué dans les règles de l'art, pour une toiture durable et fiable.</li>
+    <br> <!-- Saut de ligne ajouté -->
     <li><strong>Un intervenant local</strong>, rapide et réactif, qui connaît les spécificités climatiques et les exigences du secteur de Bordeaux.</li>
-    <li><strong>Une solution adaptée</strong> à votre toiture, votre rénovation ou votre entretien, afin d’éviter des interventions multiples et coûteuses à l’avenir.</li>
+    <br> <!-- Saut de ligne ajouté -->
+    <li><strong>Une solution adaptée</strong> à votre toiture, votre rénovation ou votre entretien, afin d'éviter des interventions multiples et coûteuses à l'avenir.</li>
   </ul>
-  <p><strong>Mon objectif :</strong> vous offrir un service de confiance, privilégier la qualité et la longévité de votre toiture, pour votre tranquillité.</p>
+  <br> <!-- Saut de ligne ajouté -->
+  <p><strong>Mon objectif :</strong> vous offrir un service de confiance, privilégier la qualité et la longévité de votre toiture, pour votre tranquillité.</p>
 </section>
-
 
   <!-- Services -->
   <section id="services" class="services">
-  <h2>Mes Services</h2>
-  <ul class="services-list">
-    <li><a href="services/toiture.html" class="service-btn">Toiture : réparation et rénovation</a></li>
-    <li><a href="services/nettoyage.html" class="service-btn">Nettoyage de toiture</a></li>
-    <li><a href="services/zinguerie.html" class="service-btn">
-      Zinguerie : Pose et réparation de chêneaux<br>
-      &nbsp;&nbsp;- Entourages de cheminée<br>
-      &nbsp;&nbsp;- Réalisation de noues<br>
-      &nbsp;&nbsp;- Pose de rives métalliques<br>
-      &nbsp;&nbsp;- Étanchéité des solins<br>
-      &nbsp;&nbsp;- Installation de dalles d’évacuation<br>
-      &nbsp;&nbsp;- Pose et entretien de descentes d’eau pluviales
-    </a></li>
-    <li><a href="services/gouttieres.html" class="service-btn">Gouttières (PVC et Zinc) : pose et nettoyage</a></li>
-    <li><a href="services/velux.html" class="service-btn">Fenêtres de toit : pose de Velux</a></li>
-  </ul>
-</section>
-
+    <h2>Mes Services</h2>
+    <ul class="services-list">
+      <li><a href="services/toiture.html" class="service-btn">Toiture : réparation et rénovation</a></li>
+      <li><a href="services/nettoyage.html" class="service-btn">Nettoyage de toiture</a></li>
+      <li><a href="services/zinguerie.html" class="service-btn">
+        Zinguerie : Pose et réparation de chêneaux<br>
+        &nbsp;&nbsp;- Entourages de cheminée<br>
+        &nbsp;&nbsp;- Réalisation de noues<br>
+        &nbsp;&nbsp;- Pose de rives métalliques<br>
+        &nbsp;&nbsp;- Étanchéité des solins<br>
+        &nbsp;&nbsp;- Installation de dalles d'évacuation<br>
+        &nbsp;&nbsp;- Pose et entretien de descentes d'eau pluviales
+      </a></li>
+      <li><a href="services/gouttieres.html" class="service-btn">Gouttières (PVC et Zinc) : pose et nettoyage</a></li>
+      <li><a href="services/velux.html" class="service-btn">Fenêtres de toit : pose de Velux</a></li>
+    </ul>
+  </section>
 
   <!-- Réalisations -->
   <section class="realisations" id="realisations">
@@ -134,27 +130,23 @@ if (empty($_SESSION['token'])) {
   <!-- Contact -->
   <section id="contact" class="contact">
     <h2>Contactez-moi</h2>
-    <p>Adresse : 9 Rue de Condé, 33000 Bordeaux</p>
-    <p>Téléphone : 06 40 88 79 68</p>
-    <p>Email : <a href="mailto:alexandrefourquin@hotmail.fr">alexandrefourquin@hotmail.fr</a></p>
+    <p>Ville : Saint-germain-du-puch 33750</p>
+    <p>Téléphone : 06 45 37 15 86</p>
+    <p>Email : <a href="mailto:fourquin.f@gmail.com">fourquin.f@gmail.com</a></p>
 
-    <div id="form-devis" class="form-devis">
-       <?php if (isset($_GET['message']) && $_GET['message'] === 'ok'): ?>
-       <div class="message-confirmation">
+    <div id="form-devis" class="form-devis" style="display: block;">
+      <?php if (isset($_GET['message']) && $_GET['message'] === 'ok'): ?>
+        <div class="message-confirmation">
           ✅ Votre message a bien été envoyé. Merci pour votre confiance.
-       </div>
-    <?php endif; ?>
+        </div>
+      <?php endif; ?>
 
       <form action="traitement-formulaire.php" method="POST">
-
-      <!-- 🔒 Sécurité du formulaire -->
-    <!-- Token anti-CSRF -->
-    <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
-    <!-- Champ caché anti-bots -->
-    <input type="text" name="website" style="display:none">
-    <h3>Formulaire de devis</h3>
-    <label for="nom">Nom :</label>
-    <input type="text" id="nom" name="nom" required />
+        <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
+        <input type="text" name="website" style="display:none">
+        <h3>Formulaire de devis</h3>
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required />
 
         <label for="email">Email :</label>
         <input type="email" id="email" name="email" required />
@@ -174,31 +166,22 @@ if (empty($_SESSION['token'])) {
 
   <!-- JS -->
   <script>
-    // Toggle formulaire devis depuis bouton header et bouton hero
+    // Scroll vers le formulaire devis
     const btnDevisHeader = document.getElementById('btn-devis-header');
     const btnDevis = document.getElementById('btn-devis');
-    const formDevis = document.getElementById('form-devis');
 
-    function toggleFormDevis() {
-      if(formDevis.style.display === 'block') {
-        formDevis.style.display = 'none';
-        btnDevis.textContent = 'Demander un devis gratuit';
-      } else {
-        formDevis.style.display = 'block';
-        btnDevis.textContent = 'Fermer le formulaire';
-        formDevis.scrollIntoView({behavior: 'smooth'});
-      }
+    function scrollToDevis() {
+      document.getElementById('form-devis').scrollIntoView({behavior: 'smooth'});
     }
 
-    btnDevisHeader.addEventListener('click', toggleFormDevis);
-    btnDevis.addEventListener('click', toggleFormDevis);
+    btnDevisHeader.addEventListener('click', scrollToDevis);
+    btnDevis.addEventListener('click', scrollToDevis);
 
     // Carrousel
     const track = document.querySelector('.carousel-track');
     const items = document.querySelectorAll('.carousel-item');
     const prevBtn = document.querySelector('.carousel-btn.prev');
     const nextBtn = document.querySelector('.carousel-btn.next');
-
     let currentIndex = 0;
 
     function updateCarousel() {
@@ -219,7 +202,7 @@ if (empty($_SESSION['token'])) {
     window.addEventListener('resize', updateCarousel);
     window.addEventListener('load', updateCarousel);
 
-    // Burger menu slide
+    // Burger menu
     const burger = document.getElementById('burger');
     const navMenu = document.getElementById('nav-menu');
 
@@ -228,7 +211,6 @@ if (empty($_SESSION['token'])) {
       burger.classList.toggle('active');
     });
 
-    // Close menu on link click (optional)
     document.querySelectorAll('.header__menu a').forEach(link => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('nav-active');
@@ -236,15 +218,13 @@ if (empty($_SESSION['token'])) {
       });
     });
 
-   
-
-  // Si le message de confirmation est affiché, on le fait disparaître après 5 secondes
-  const messageConfirmation = document.querySelector('.message-confirmation');
-  if (messageConfirmation) {
-    setTimeout(() => {
-      messageConfirmation.style.display = 'none';
-    }, 5000);
-  }
-</script>
+    // Message confirmation
+    const messageConfirmation = document.querySelector('.message-confirmation');
+    if (messageConfirmation) {
+      setTimeout(() => {
+        messageConfirmation.style.display = 'none';
+      }, 5000);
+    }
+  </script>
 </body>
 </html>

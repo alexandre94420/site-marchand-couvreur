@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // Préparation du mail
-    $to = "alexandrefourquin@hotmail.fr"; 
+    $to = "fourquin.f@gmail.com"; 
     $subject = "Nouveau message de $nom via le formulaire de contact";
     $body = "Nom : $nom\n";
     $body .= "Email : $email\n\n";
