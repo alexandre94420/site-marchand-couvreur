@@ -119,29 +119,34 @@
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="contact">
-    <h2>Contactez-moi</h2>
-    <p>Adresse : 9 Rue de Condé, 33000 Bordeaux</p>
-    <p>Téléphone : 06 40 88 79 68</p>
-    <p>Email : <a href="mailto:contact@couvreur-bordeaux.com">contact@couvreur-bordeaux.com</a></p>
+ <!-- Section Contact : coordonnées -->
+<section id="contact" class="contact">
+  <h2>Contactez-moi</h2>
+  <p>Adresse : 9 Rue de Condé, 33000 Bordeaux</p>
+  <p>Téléphone : 06 40 88 79 68</p>
+  <p>Email : <a href="mailto:contact@couvreur-bordeaux.com">contact@couvreur-bordeaux.com</a></p>
+</section>
 
-    <div id="form-devis" class="form-devis">
-      <form>
-        <h3>Formulaire de devis</h3>
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" required />
 
-        <label for="email">Email :</label>
-        <input type="email" id="email" name="email" required />
+   <!-- Section Formulaire de devis -->
+<section id="form-devis" class="form-devis">
+  <h3>Formulaire de devis</h3>
+  <form action="traitement-formulaire.php" method="POST">
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" name="nom" required maxlength="100" />
 
-        <label for="message">Message :</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
+    <label for="email">Email :</label>
+    <input type="email" id="email" name="email" required />
 
-        <button type="submit" class="btn">Envoyer</button>
-      </form>
-    </div>
-  </section>
+    <label for="message">Message :</label>
+    <textarea id="message" name="message" rows="5" required maxlength="1000"></textarea>
+
+    <!-- Honeypot anti-bot -->
+    <input type="text" name="website" style="display:none" />
+
+    <button type="submit" class="btn">Envoyer</button>
+  </form>
+</section>
 
   <!-- Footer -->
   <footer class="footer">
