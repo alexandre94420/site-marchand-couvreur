@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -127,10 +128,16 @@
     <p>Email : <a href="mailto:contact@couvreur-bordeaux.com">contact@couvreur-bordeaux.com</a></p>
 
     <div id="form-devis" class="form-devis">
-      <form>
-        <h3>Formulaire de devis</h3>
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" required />
+      <form action="traitement-formulaire.php" method="POST">
+
+      <!-- 🔒 Sécurité du formulaire -->
+    <!-- Token anti-CSRF -->
+    <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
+    <!-- Champ caché anti-bots -->
+    <input type="text" name="website" style="display:none">
+    <h3>Formulaire de devis</h3>
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" name="nom" required />
 
         <label for="email">Email :</label>
         <input type="email" id="email" name="email" required />
